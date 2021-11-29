@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="1" author="maxkizi">
+        <createTable tableName="region_dictionary" remarks="Таблица регионов РФ">
+            <column name="id" type="bigserial" autoIncrement="true" remarks="ID автоинкремент">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="full_name" type="text" remarks="Полное наименоване региона">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_name" type="text" remarks="Сокращённое наименование региона">
+                <constraints nullable="false"/>
+            </column>
+            <column name="region_code" type="text" remarks="Код региона">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean" remarks="Флаг удаления">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="timestamp" remarks="Дата создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_updated" type="timestamp" remarks="Дата обновления">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

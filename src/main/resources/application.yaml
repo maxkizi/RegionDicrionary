@@ -12,10 +12,8 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+      ddl-auto: none
     show-sql: true
     open-in-view: false
+  liquibase:
+    change-log: classpath:/db/liquibase-changelog.xml

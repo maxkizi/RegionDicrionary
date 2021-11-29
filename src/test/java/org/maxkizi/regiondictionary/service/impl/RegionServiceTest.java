@@ -62,7 +62,7 @@ class RegionServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    void shouldCreateAndFindById() throws InterruptedException {
+    void shouldCreateAndFindById() {
         Region createdRegion = regionService.create(testDataProvider.buildRegion(1));
         Region foundRegion = regionService.findById(createdRegion.getId());
         Assertions.assertEquals(createdRegion, foundRegion);
