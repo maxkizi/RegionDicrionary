@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: region-dictionary-rest-api
+  description: REST-API на чтение и изменение справочника регионов.
+  contact:
+    name: Кизилов Максим
+    email: fakemail@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1/dictionary
+tags:
+  - name: RegionDictionaryController
+    description: Контроллер для работы со справачником регионов
+paths:
+  /regions:
+    get:
+      tags:
+        - RegionDictionaryController
+      summary: Получение списка всех регионов
+      description: Получение списка всех регионов
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Фильтрация списка
+
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Номер страницы
+
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Колличество элементов на странице
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionListResponse'
+        '500':
+          description: Internal server error
+
+    post:
+      tags:
+        - RegionDictionaryController
+      summary: Добавление нового региона в справочник
+      description: Добавление нового региона в справочник
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionDto'
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDto'
+
+        '500':
+          description: Internal server error
+
+
+  /regions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Id региона
+        schema:
+          type: integer
+          example: 11
+
+
+    get:
+      tags:
+        - RegionDictionaryController
+
+      summary: Получкние региона по id
+      description: Получкние региона по id
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDto'
+        '500':
+          description: Internal server error
+        '404':
+          description: Region not found
+
+    put:
+      tags:
+        - RegionDictionaryController
+      summary: Обновление региона
+      description: Обновление региона
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionDto'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDto'
+
+        '500':
+          description: Internal server error
+        '404':
+          description: Region not found
+
+    delete:
+      tags:
+        - RegionDictionaryController
+      summary: Удаление региона
+      description: Удаление региона
+      responses:
+        '204':
+          description: Ok
+        '500':
+          description: Internal server error
+        '404':
+          description: Region not found
+
+
+components:
+  schemas:
+    RegionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 7
+          description: Id региона
+        fullName:
+          type: string
+          example: Кировская область
+          description: Полное наименование
+        shortName:
+          type: string
+          example: КИР
+          description: Сокращённое наименование
+        regionCode:
+          type: integer
+          example: 43
+          description: Код региона
+      required: [id, fullName, shortName,  regionCode]
+
+
+    RegionListResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegionDto'
+        pageable:
+          $ref: '../../pageable/pageable.yaml#/components/schemas/Pageable'
+        total_pages:
+          type: integer
+        total_elements:
+          type: integer
+        last:
+          type: boolean
+        first:
+          type: boolean
+        size:
+          type: integer
+        number_of_elements:
+          type: integer
+        number:
+          type: integer
+        sort:
+          $ref: '../../pageable/pageable.yaml#/components/schemas/Sort'
+        empty:
+          type: boolean
+
