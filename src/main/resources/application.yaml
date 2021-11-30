@@ -5,11 +5,12 @@ server:
     include-binding-errors: always
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: postgres
-    driver-class-name: org.h2.Driver
+  #  datasource:
+  #    url: jdbc:h2:mem:testdb
+  #    username: sa
+  #    password:
+  #    driver-class-name: org.h2.Driver
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -17,3 +18,10 @@ spring:
     open-in-view: false
   liquibase:
     change-log: classpath:/db/liquibase-changelog.xml
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/region_dictionary_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver

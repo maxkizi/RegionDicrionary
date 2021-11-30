@@ -28,8 +28,8 @@ public class RegionService extends AbstractBaseService<Region, Long, QRegion, Re
             bb.or(QRegion.region.fullName.containsIgnoreCase(search));
             bb.or(QRegion.region.shortName.containsIgnoreCase(search));
             bb.or(QRegion.region.regionCode.containsIgnoreCase(search));
-            bb.and(QRegion.region.isDeleted.isFalse());
         }
+        bb.and(QRegion.region.isDeleted.isFalse());
         return findAll(bb, pageable);
     }
 

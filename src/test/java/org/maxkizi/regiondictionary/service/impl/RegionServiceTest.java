@@ -1,7 +1,7 @@
 package org.maxkizi.regiondictionary.service.impl;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.maxkizi.regiondictionary.exception.RegionNotFoundException;
 import org.maxkizi.regiondictionary.model.Region;
@@ -11,8 +11,6 @@ import org.maxkizi.regiondictionary.service.impl.helper.TestDataProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
-//TODO: В контейнере или нет????
 
 class RegionServiceTest extends BaseIntegrationTest {
     private final IRegionService regionService;
@@ -27,7 +25,7 @@ class RegionServiceTest extends BaseIntegrationTest {
         this.repository = repository;
     }
 
-    @AfterEach
+    @BeforeEach
     void deleteAll() {
         repository.deleteAll();
     }

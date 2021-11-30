@@ -1,18 +1,16 @@
 package org.maxkizi.regiondictionary.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.maxkizi.regiondictionary.model.base.BaseDeletedEntity;
-import org.maxkizi.regiondictionary.model.base.IEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "region_dictionary")
+@Table(name = "region")
 @NoArgsConstructor
 @Data
 @SuperBuilder(toBuilder = true)

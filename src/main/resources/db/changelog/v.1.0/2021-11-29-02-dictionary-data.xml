@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="10" author="maxkizi">
+        <loadData tableName="region"
+                  separator=";"
+                  file="db/regions.csv">
+            <column name="region_code" type="string"/>
+            <column name="full_name" type="string"/>
+            <column name="short_name" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="11" author="maxkizi">
+        <sqlFile path="db/sql/updateTable.sql" encoding="UTF-8"/>
+    </changeSet>
+</databaseChangeLog>
