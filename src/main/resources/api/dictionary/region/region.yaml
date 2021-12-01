@@ -170,7 +170,7 @@ components:
           items:
             $ref: '#/components/schemas/RegionDto'
         pageable:
-          $ref: '../../pageable/pageable.yaml#/components/schemas/Pageable'
+          $ref: '#/components/schemas/Pageable'
         total_pages:
           type: integer
         total_elements:
@@ -186,7 +186,32 @@ components:
         number:
           type: integer
         sort:
-          $ref: '../../pageable/pageable.yaml#/components/schemas/Sort'
+          $ref: '#/components/schemas/Sort'
         empty:
           type: boolean
 
+    Pageable:
+      type: object
+      properties:
+        sort:
+          $ref: '#/components/schemas/Sort'
+        page_number:
+          type: integer
+        page_size:
+          type: integer
+        offset:
+          type: integer
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+
+    Sort:
+      type: object
+      properties:
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+        empty:
+          type: boolean
