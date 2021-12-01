@@ -2,8 +2,9 @@ package org.maxkizi.regiondictionary.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.maxkizi.regiondictionary.converter.RegionConverter;
+import org.maxkizi.regiondictionary.generated.dto.RegionDto;
 import org.maxkizi.regiondictionary.service.IRegionService;
-import org.maxkizi.userdemo.generated.dto.RegionDto;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

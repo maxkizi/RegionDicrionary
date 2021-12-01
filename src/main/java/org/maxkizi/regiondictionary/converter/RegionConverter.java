@@ -1,8 +1,9 @@
 package org.maxkizi.regiondictionary.converter;
 
 import lombok.RequiredArgsConstructor;
+import org.maxkizi.regiondictionary.generated.dto.RegionDto;
 import org.maxkizi.regiondictionary.model.Region;
-import org.maxkizi.userdemo.generated.dto.RegionDto;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

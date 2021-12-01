@@ -154,7 +154,7 @@
                             <output>${project.build.directory}/generated-sources/</output>
                             <inputSpec>${project.basedir}/src/main/resources/api/dictionary/region/region.yaml
                             </inputSpec>
-                            <modelPackage>org.maxkizi.userdemo.generated.dto</modelPackage>
+                            <modelPackage>org.maxkizi.regiondictionary.generated.dto</modelPackage>
                             <generateApis>false</generateApis>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
@@ -175,7 +175,7 @@
                             <goal>process</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/</outputDirectory>
                             <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
                         </configuration>
                     </execution>

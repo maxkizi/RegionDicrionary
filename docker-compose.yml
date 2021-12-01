@@ -1,0 +1,11 @@
+version: "2"
+services:
+  region-dictionary:
+      container_name: region-dictionary-container
+      build:
+          context:  .
+          dockerfile: Dockerfile
+      image: region-dictionary-image
+      ports:
+        - 8888:7777
+
