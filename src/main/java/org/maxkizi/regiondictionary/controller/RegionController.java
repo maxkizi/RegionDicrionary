@@ -3,11 +3,13 @@ package org.maxkizi.regiondictionary.controller;
 import lombok.RequiredArgsConstructor;
 import org.maxkizi.regiondictionary.converter.RegionConverter;
 import org.maxkizi.regiondictionary.service.IRegionService;
+import org.maxkizi.userdemo.generated.dto.RegionDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.maxkizi.userdemo.generated.dto.RegionDto;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 import static org.maxkizi.regiondictionary.controller.ControllerUtils.REGION_CONTROLLER;
 import static org.maxkizi.regiondictionary.controller.ControllerUtils.REGION_CONTROLLER_BY_ID;
@@ -31,13 +33,13 @@ public class RegionController {
     }
 
     @PostMapping(REGION_CONTROLLER)
-    public RegionDto create(@RequestBody RegionDto regionDto) {
+    public RegionDto create(@RequestBody @Valid RegionDto regionDto) {
         return converter.toDto(service.create(converter.fromDto(regionDto)));
     }
 
     @PutMapping(REGION_CONTROLLER_BY_ID)
     public RegionDto update(@PathVariable(name = "id") Long id,
-                            @RequestBody RegionDto regionDto) {
+                            @RequestBody @Valid RegionDto regionDto) {
         return converter.toDto(service.update(id, converter.fromDto(regionDto)));
     }
 

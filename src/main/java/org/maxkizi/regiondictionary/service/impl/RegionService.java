@@ -9,6 +9,9 @@ import org.maxkizi.regiondictionary.model.Region;
 import org.maxkizi.regiondictionary.repository.RegionRepository;
 import org.maxkizi.regiondictionary.service.IRegionService;
 import org.maxkizi.regiondictionary.service.base.AbstractBaseService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,7 @@ public class RegionService extends AbstractBaseService<Region, Long, QRegion, Re
     }
 
     @Override
+    @Cacheable(value = "region", key = "#id")
     public Region findById(Long id) {
         BooleanBuilder bb = new BooleanBuilder();
         bb.and(QRegion.region.isDeleted.isFalse()).and(QRegion.region.id.eq(id));
@@ -41,21 +45,29 @@ public class RegionService extends AbstractBaseService<Region, Long, QRegion, Re
     }
 
     @Override
+    @CachePut(value = "region", key = "#region.id")
     public Region create(Region region) {
         return save(region);
     }
 
     @Override
     public Region update(Long id, Region region) {
-        Region oldRegion = get(id).orElseThrow(RegionNotFoundException::new);
+        BooleanBuilder bb = new BooleanBuilder();
+        bb.and(QRegion.region.id.eq(id));
+        bb.and(QRegion.region.isDeleted.isFalse());
+        Region oldRegion = get(bb).orElseThrow(RegionNotFoundException::new);
         region.setId(id);
         region.setCreatedAt(oldRegion.getCreatedAt());
         return save(region);
     }
 
     @Override
+    @CacheEvict(value = "region", key = "#id")
     public void delete(Long id) {
-        Region region = get(id).orElseThrow(RegionNotFoundException::new);
+        BooleanBuilder bb = new BooleanBuilder();
+        bb.and(QRegion.region.id.eq(id));
+        bb.and(QRegion.region.isDeleted.isFalse());
+        Region region = get(bb).orElseThrow(RegionNotFoundException::new);
         region.setDeleted(true);
         save(region);
     }
