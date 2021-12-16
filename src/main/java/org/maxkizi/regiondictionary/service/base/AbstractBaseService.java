@@ -1,6 +1,5 @@
 package org.maxkizi.regiondictionary.service.base;
 
-import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Predicate;
 import org.maxkizi.regiondictionary.model.base.IEntity;
 import org.maxkizi.regiondictionary.repository.base.BaseRepository;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractBaseService
-        <T extends IEntity<I>, I extends Serializable, Q extends EntityPath<T>, R extends BaseRepository<T, I, Q>>
+        <T extends IEntity<I>, I extends Serializable, R extends BaseRepository<T, I>>
         implements BaseService<T, I> {
     public abstract R getRepository();
 

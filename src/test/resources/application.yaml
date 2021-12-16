@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: info
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:13.1:///
+    username: postgres
+    password: postgres
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+  jpa:
+    show-sql: true
+  liquibase:
+    change-log: db/liquibase-changelog.xml
+    contexts: test
+application:
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecure
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 14

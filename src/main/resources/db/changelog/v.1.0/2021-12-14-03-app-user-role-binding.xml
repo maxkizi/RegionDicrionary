@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="1" author="maxkizi">
+        <createTable tableName="application_user_role_binding" remarks="Таблица-связка роли и пользователя">
+            <column name="role_code" type="text" remarks="Ссылка на таблицу ролей"/>
+            <column name="application_user_id" type="bigserial" remarks="Ссылка на таблицу рользователей"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="application_user_role_binding"
+                                 baseColumnNames="role_code"
+                                 constraintName="fk_application_user_binding_role_code"
+                                 referencedTableName="roles"
+                                 referencedColumnNames="code"/>
+        <addForeignKeyConstraint baseTableName="application_user_role_binding"
+                                 baseColumnNames="application_user_id"
+                                 constraintName="fk_application_user_application_user_id"
+                                 referencedTableName="application_user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

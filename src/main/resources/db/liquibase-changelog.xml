@@ -4,4 +4,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <include file="db/changelog/v.1.0/2021-11-29-01-init-schema.xml"/>
     <include file="db/changelog/v.1.0/2021-11-29-02-dictionary-data.xml"/>
+    <include file="db/changelog/v.1.0/2021-12-14-01-app-user-table.xml"/>
+    <include file="db/changelog/v.1.0/2021-12-14-02-role-table.xml"/>
+    <include file="db/changelog/v.1.0/2021-12-14-03-app-user-role-binding.xml"/>
+    <include file="db/changelog/v.1.0/2021-12-14-04-add-test-users.xml"/>
 </databaseChangeLog>

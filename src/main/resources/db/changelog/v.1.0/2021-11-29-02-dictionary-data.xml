@@ -3,7 +3,7 @@
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    <changeSet id="10" author="maxkizi">
+    <changeSet id="1" author="maxkizi">
         <loadData tableName="region"
                   separator=";"
                   file="db/regions.csv">
@@ -13,7 +13,7 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="11" author="maxkizi">
-        <sqlFile path="db/sql/updateTable.sql" encoding="UTF-8"/>
+    <changeSet id="2" author="maxkizi">
+        <sqlFile path="db/sql/update_table_region_dictionary.sql" encoding="UTF-8"/>
     </changeSet>
 </databaseChangeLog>

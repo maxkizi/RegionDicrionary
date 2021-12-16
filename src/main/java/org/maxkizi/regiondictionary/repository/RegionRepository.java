@@ -6,5 +6,5 @@ import org.maxkizi.regiondictionary.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegionRepository extends BaseRepository<Region, Long, QRegion> {
+public interface RegionRepository extends BaseRepository<Region, Long> {
 }

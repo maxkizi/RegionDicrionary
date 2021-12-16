@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
 @Service
 @RequiredArgsConstructor
 @Data
-public class RegionService extends AbstractBaseService<Region, Long, QRegion, RegionRepository> implements IRegionService {
+public class RegionService extends AbstractBaseService<Region, Long, RegionRepository> implements IRegionService {
 
     private final RegionRepository repository;
 

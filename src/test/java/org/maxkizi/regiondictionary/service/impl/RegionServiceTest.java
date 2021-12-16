@@ -11,18 +11,21 @@ import org.maxkizi.regiondictionary.service.impl.helper.TestDataProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 class RegionServiceTest extends BaseIntegrationTest {
     private final IRegionService regionService;
     private final TestDataProvider testDataProvider;
     private final RegionRepository repository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public RegionServiceTest(IRegionService regionService, TestDataProvider testDataProvider, RegionRepository repository) {
+    public RegionServiceTest(IRegionService regionService, TestDataProvider testDataProvider, RegionRepository repository, BCryptPasswordEncoder passwordEncoder) {
         this.regionService = regionService;
         this.testDataProvider = testDataProvider;
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @BeforeEach
@@ -103,5 +106,11 @@ class RegionServiceTest extends BaseIntegrationTest {
     @Test
     void updateAndFindByIdAndThrowRegionNotFound() {
         Assertions.assertThrows(RegionNotFoundException.class, () -> regionService.update(1L, new Region()));
+    }
+
+    @Test
+    void passwordEncode(){
+        System.out.println("--------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(passwordEncoder.encode("guest"));
     }
 }
