@@ -5,6 +5,7 @@ import org.maxkizi.regiondictionary.security.jwt.JwtConfig;
 import org.maxkizi.regiondictionary.security.jwt.JwtTokenVerifier;
 import org.maxkizi.regiondictionary.security.jwt.JwtUserNameAndPasswordAuthenticationFilter;
 import org.maxkizi.regiondictionary.service.impl.ApplicationUserService;
+import org.maxkizi.regiondictionary.service.impl.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,19 +17,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.crypto.SecretKey;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
-
-
-    private final JwtConfig jwtConfig;
-    private final SecretKey secretKey;
     private final ApplicationUserService applicationUserService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final JwtConfig jwtConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,8 +33,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilter(new JwtUserNameAndPasswordAuthenticationFilter(authenticationManager(), secretKey, jwtConfig))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUserNameAndPasswordAuthenticationFilter.class)
+                .addFilter(new JwtUserNameAndPasswordAuthenticationFilter(authenticationManager(), jwtService, jwtConfig))
+                .addFilterAfter(new JwtTokenVerifier(), JwtUserNameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();
