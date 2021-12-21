@@ -19,7 +19,6 @@ import java.io.IOException;
 public class JwtUserNameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final JwtConfig jwtConfig;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
@@ -40,9 +39,10 @@ public class JwtUserNameAndPasswordAuthenticationFilter extends UsernamePassword
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
-        String accessToken = jwtService.generateRefreshToken(authResult);
-        String refreshToken = jwtService.generateAccessToken(authResult);
-        response.setHeader(jwtConfig.getAccessTokenHeader(), accessToken);
-        response.setHeader(jwtConfig.getRefreshTokenHeader(), refreshToken);
+        String refreshToken = jwtService.generateRefreshToken(authResult);
+        String accessToken = jwtService.generateAccessToken(authResult);
+        response.addHeader(jwtService.getJwtConfig().getAccessTokenHeader(), jwtService.getJwtConfig().getTokenPrefix() + accessToken);
+        response.addHeader(jwtService.getJwtConfig().getRefreshTokenHeader(), jwtService.getJwtConfig().getTokenPrefix() + refreshToken);
+
     }
 }

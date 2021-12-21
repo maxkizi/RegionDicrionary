@@ -23,5 +23,5 @@ application:
     tokenPrefix: "Bearer "
     accessTokenHeader: "access_token"
     refreshTokenHeader: "refresh_token"
-    accessTokenTimeout: 2
+    accessTokenTimeout: 1
     refreshTokenTimeout: 10

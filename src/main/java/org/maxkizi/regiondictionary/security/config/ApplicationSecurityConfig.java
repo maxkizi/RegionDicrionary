@@ -33,8 +33,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilter(new JwtUserNameAndPasswordAuthenticationFilter(authenticationManager(), jwtService, jwtConfig))
-                .addFilterAfter(new JwtTokenVerifier(), JwtUserNameAndPasswordAuthenticationFilter.class)
+                .addFilter(new JwtUserNameAndPasswordAuthenticationFilter(authenticationManager(), jwtService))
+                .addFilterAfter(new JwtTokenVerifier(jwtService), JwtUserNameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();
