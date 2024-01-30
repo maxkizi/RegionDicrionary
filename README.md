@@ -19,3 +19,4 @@ src/main/resources/postman-collection/RegionDictionary.postman_collection.json
 так как меняется состояние бд)
 
 
+6524611830:AAFgjE9Zgz_LdiXkSbIDa49fmyVmDp521yU
