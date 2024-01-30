@@ -17,6 +17,3 @@ mvn clean package
 src/main/resources/postman-collection/RegionDictionary.postman_collection.json 
 (постман тесты расчитаны на одну итерацию после запуска приложения,
 так как меняется состояние бд)
-
-
-6524611830:AAFgjE9Zgz_LdiXkSbIDa49fmyVmDp521yU
